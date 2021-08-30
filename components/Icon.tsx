@@ -9,23 +9,22 @@ export const IconType = {
 interface IconProps {
   type: keyof typeof IconType;
   size?: number;
+  maxHeight: number;
   fill?: string;
 }
 
-const IconWrapper = styled.div<{ size?: number; fill?: string }>`
-  width: ${({ size }) => size}px;
-  height: ${({ size }) => size}px;
-  fill: ${({ fill }) => (fill ? fill : "")};
-`;
-
 const Icon: React.FC<IconProps> = (props) => {
-  const { type, size, fill } = props;
+  const { type, size, maxHeight, fill } = props;
   const IconSvgFile = IconType[type];
 
   return (
-    <IconWrapper size={size} fill={fill}>
-      <WaterIcon />
-    </IconWrapper>
+    <IconSvgFile
+      style={{
+        width: size ? size + "px" : "100%",
+        maxHeight: maxHeight ? maxHeight + "px" : "none",
+        fill: fill ? fill : "",
+      }}
+    />
   );
 };
 

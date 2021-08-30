@@ -2,13 +2,24 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "@/styles/Home.module.scss";
 import Icon from "@/components/Icon";
+import ItemsJson from "@/data/items.json";
 
-type Props = {
-  items: number;
+// 防災グッズ
+type Item = {
+  id: number;
+  name: string;
+  explanation: string;
+  iconType: string;
 };
 
+type Props = {
+  items: Item[];
+};
+
+// build時に一回だけ実行される
 export async function getStaticProps() {
-  const items: number = 44;
+  // jsonから防災グッズの情報を取得する
+  const items: Item[] = ItemsJson;
   return { props: { items } };
 }
 
@@ -36,8 +47,17 @@ const Home: NextPage<Props> = ({ items }: Props) => {
             placeholder="同居人数を入力"
             className={`block mx-auto border-solid border-2 border-gray-500 rounded-lg p-2`}
           />
-          <p>{items}</p>
-          <Icon type="WaterIcon" size={24} fill="#333" />
+          <div className={`flex`}>
+            {items.map((item, idx) => {
+              return (
+                <div key={idx} className={`w-3/12`}>
+                  <Icon type={item.iconType} maxHeight={100} />
+                  <span className={`block text-2xl`}>{item.name}</span>
+                  <p>{item.explanation}</p>
+                </div>
+              );
+            })}
+          </div>
         </section>
       </main>
 
