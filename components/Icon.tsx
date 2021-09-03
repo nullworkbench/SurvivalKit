@@ -1,9 +1,23 @@
 import styled from "styled-components";
 // svg（babelのプラグインは絶対パスが使用できないので相対パスで）
-import WaterIcon from "../data/icons/WaterIcon.svg";
+import AlphaRice from "../data/icons/AlphaRice.svg";
+import Flashlight from "../data/icons/Flashlight.svg";
+import Groves from "../data/icons/Groves.svg";
+import MedicalKit from "../data/icons/MedicalKit.svg";
+import MobileBattery from "../data/icons/MobileBattery.svg";
+import Radio from "../data/icons/Radio.svg";
+import ToiletPaper from "../data/icons/ToiletPaper.svg";
+import Water from "../data/icons/Water.svg";
 
 export const IconType = {
-  WaterIcon,
+  AlphaRice,
+  Flashlight,
+  Groves,
+  MedicalKit,
+  MobileBattery,
+  Radio,
+  ToiletPaper,
+  Water,
 };
 
 interface IconProps {
