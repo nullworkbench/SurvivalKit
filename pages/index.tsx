@@ -296,6 +296,18 @@ const Home: NextPage<Props> = ({ items }: Props) => {
           を利用しています。
         </p>
         <p>
+          人物のイラストは
+          <a
+            href="https://soco-st.com"
+            target="_blank"
+            rel="noreferrer"
+            className="font-semibold text-blue-500"
+          >
+            ソコスト
+          </a>
+          を利用しています。
+        </p>
+        <p>
           防災グッズのイラストは全てAdobe Illustratorを用いて自作しています。
         </p>
       </footer>
