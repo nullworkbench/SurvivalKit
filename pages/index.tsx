@@ -261,21 +261,36 @@ const Home: NextPage<Props> = ({ items }: Props) => {
       <footer className="p-5 text-center">
         <p>
           このアプリは
-          <a href="https://nextjs.org" target="_blank" rel="noreferrer">
+          <a
+            href="https://nextjs.org"
+            target="_blank"
+            rel="noreferrer"
+            className="font-semibold text-blue-500"
+          >
             Next.js
           </a>
           、
-          <a href="https://tailwindcss.com" target="_blank" rel="noreferrer">
+          <a
+            href="https://tailwindcss.com"
+            target="_blank"
+            rel="noreferrer"
+            className="font-semibold text-blue-500"
+          >
             Tailwind CSS
           </a>
           を使って開発しています。
         </p>
         <p>
-          アイコンは
-          <a href="https://heroicons.com" target="_blank" rel="noreferrer">
+          一部のアイコンは
+          <a
+            href="https://heroicons.com"
+            target="_blank"
+            rel="noreferrer"
+            className="font-semibold text-blue-500"
+          >
             heroicons
           </a>
-          を一部利用しています。
+          を利用しています。
         </p>
         <p>
           防災グッズのイラストは全てAdobe Illustratorを用いて自作しています。
