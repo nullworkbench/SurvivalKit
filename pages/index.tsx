@@ -74,7 +74,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
               children: React.ReactNode;
             }) => {
               return (
-                <div className="flex justify-center">
+                <div className="flex justify-center mb-4">
                   <label htmlFor={`inputArea${idx}`} className="p-2 mr-4">
                     {props.name}
                   </label>
@@ -119,9 +119,9 @@ const Home: NextPage<Props> = ({ items }: Props) => {
           })}
 
           {/* 人を追加する */}
-          <div>
+          <div className="mt-4">
             <button
-              className="text-white font-bold bg-blue-400 px-8 py-3 rounded-lg"
+              className="text-white font-semibold bg-blue-400 px-8 py-3 rounded-lg"
               onClick={() => setPersons([...persons, new Person("", "man", 0)])}
             >
               家族を追加
