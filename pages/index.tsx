@@ -172,18 +172,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
       </main>
 
       <footer className="p-5 text-center">
-        <p>
-          アイコンは
-          <a
-            href="https://soco-st.com"
-            target="_blank"
-            rel="noreferrer"
-            className="text-blue-500"
-          >
-            ソコスト
-          </a>
-          からお借りしています。
-        </p>
+        <p>アイコンは全てAdobe Illustratorを用いて自作しています。</p>
       </footer>
     </div>
   );
