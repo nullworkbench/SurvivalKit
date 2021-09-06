@@ -65,6 +65,12 @@ const Home: NextPage<Props> = ({ items }: Props) => {
     { itemId: 9, quantity: 1 },
   ]);
 
+  // 計算ボタンを押したとき
+  function calculateBackpack() {
+    setBackpack([]);
+    persons.map((person) => {});
+  }
+
   return (
     <div className="container mx-auto">
       <Head>
@@ -133,6 +139,11 @@ const Home: NextPage<Props> = ({ items }: Props) => {
               </form>
             );
           })}
+
+          {/* 計算する */}
+          <div>
+            <button onClick={() => calculateBackpack()}>計算する</button>
+          </div>
 
           {/* 人を追加する */}
           <div className="mt-4">
