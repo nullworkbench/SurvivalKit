@@ -152,20 +152,30 @@ const Home: NextPage<Props> = ({ items }: Props) => {
               <th>アイテム</th>
               <th>単位</th>
               <th>数量</th>
+              <th>合計</th>
             </tr>
             {backpack.map((v, idx) => {
               const tdStyle = "border-2 border-black p-4";
               const item = items.find((j) => j.id == v.itemId)!;
               return (
                 <tr key={idx}>
+                  {/* アイテム */}
                   <td className={tdStyle}>
                     <Icon type={item.iconType} maxHeight={100} />
                     <span>{item.name}</span>
                   </td>
+                  {/* 単位 */}
                   <td
                     className={tdStyle}
-                  >{`${item.unit.num}${item.unit.name}`}</td>
+                  >{`${item.unit.num} ${item.unit.name}`}</td>
+                  {/* 数量 */}
                   <td className={tdStyle}>{v.quantity}</td>
+                  {/* 合計 */}
+                  <td className={tdStyle}>
+                    <strong>
+                      {`${item.unit.num * v.quantity} ${item.unit.name}`}
+                    </strong>
+                  </td>
                 </tr>
               );
             })}
