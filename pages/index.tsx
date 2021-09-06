@@ -136,20 +136,22 @@ const Home: NextPage<Props> = ({ items }: Props) => {
 
         {/* 計算結果 */}
         <section>
-          <table className="mx-auto">
+          <table className="table-auto mx-auto w-full max-w-5xl">
             <tr>
               <th>アイテム</th>
+              <th>単位</th>
               <th>数量</th>
             </tr>
             {backpack.map((v, idx) => {
+              const tdStyle = "border-2 border-black p-4";
               const item = items.find((j) => j.id == v.itemId)!;
               return (
                 <tr key={idx}>
-                  <td>
+                  <td className={tdStyle}>
                     <Icon type={item.iconType} maxHeight={100} />
                     <span>{item.name}</span>
                   </td>
-                  <td>{v.quantity}</td>
+                  <td className={tdStyle}>{v.quantity}</td>
                 </tr>
               );
             })}
