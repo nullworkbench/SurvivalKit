@@ -46,7 +46,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
   ];
 
   // 世帯人数
-  const Taro = new Person("太郎", "man", 21);
+  const Taro = new Person("", "man", 21);
   const [persons, setPersons] = useState<Person[]>([Taro]);
 
   return (
@@ -67,6 +67,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
         </section>
 
         <section className="mt-10">
+          <h3>世帯人数：{persons.length}</h3>
           {/* 世帯人数の数だけ繰り返す */}
           {persons.map((person, idx) => {
             const InputWrap = (props: {
@@ -74,7 +75,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
               children: React.ReactNode;
             }) => {
               return (
-                <div className="flex justify-center mb-4">
+                <div className="flex justify-center pb-4">
                   <label htmlFor={`inputArea${idx}`} className="p-2 mr-4">
                     {props.name}
                   </label>
@@ -86,7 +87,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
             const inputStyle =
               "block border-solid border-2 border-gray-500 rounded-lg p-2";
             return (
-              <div key={idx}>
+              <form key={idx} className="border-black border-2 mb-2 p-8">
                 <InputWrap name="名前">
                   <input
                     type="text"
@@ -97,7 +98,6 @@ const Home: NextPage<Props> = ({ items }: Props) => {
                 </InputWrap>
                 <InputWrap name="性別">
                   <select
-                    type="text"
                     id={`inputArea${idx}`}
                     placeholder="年齢を入力"
                     className={inputStyle}
@@ -114,7 +114,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
                     className={inputStyle}
                   />
                 </InputWrap>
-              </div>
+              </form>
             );
           })}
 
