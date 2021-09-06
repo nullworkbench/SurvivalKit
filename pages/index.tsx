@@ -53,7 +53,17 @@ const Home: NextPage<Props> = ({ items }: Props) => {
   // 計算結果
   const [backpack, setBackpack] = useState<
     { itemId: number; quantity: number }[]
-  >([{ itemId: 0, quantity: 2 }]);
+  >([
+    { itemId: 0, quantity: 5 },
+    { itemId: 1, quantity: 9 },
+    { itemId: 2, quantity: 1 },
+    { itemId: 3, quantity: 1 },
+    { itemId: 4, quantity: 1 },
+    { itemId: 5, quantity: 1 },
+    { itemId: 6, quantity: 1 },
+    { itemId: 7, quantity: 3 },
+    { itemId: 9, quantity: 1 },
+  ]);
 
   return (
     <div className="container mx-auto">
