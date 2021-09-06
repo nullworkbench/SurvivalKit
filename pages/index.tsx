@@ -147,6 +147,9 @@ const Home: NextPage<Props> = ({ items }: Props) => {
 
         {/* 計算結果 */}
         <section>
+          <h2 className="text-4xl font-semibold">Your Backpack</h2>
+          <p>避難リュック、倉庫に備えておくべきもの</p>
+
           <table className="table-auto mx-auto w-full max-w-5xl">
             <tr>
               <th>アイテム</th>
