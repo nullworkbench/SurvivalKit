@@ -149,14 +149,17 @@ const Home: NextPage<Props> = ({ items }: Props) => {
               "block border-solid border-2 border-gray-500 rounded-lg p-2";
             return (
               <form key={idx} className="border-black border-2 mb-2 p-8">
-                <InputWrap name="名前">
+                {/* 名前 */}
+                <div>
                   <input
                     type="text"
-                    id={`inputArea${idx}`}
+                    id={`${idx}_inputArea1`}
                     placeholder="名前を入力（省略可）"
-                    className={inputStyle}
+                    className="bg-transparent focus:outline-none"
                   />
-                </InputWrap>
+                  <span>さん</span>
+                </div>
+
                 <InputWrap name="性別">
                   <select
                     id={`inputArea${idx}`}
