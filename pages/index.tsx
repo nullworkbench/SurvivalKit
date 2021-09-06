@@ -49,6 +49,11 @@ const Home: NextPage<Props> = ({ items }: Props) => {
   const Taro = new Person("", "man", 21);
   const [persons, setPersons] = useState<Person[]>([Taro]);
 
+  // 計算結果
+  const [backpack, setBackpack] = useState<
+    { itemId: number; quantity: number }[]
+  >([{ itemId: 0, quantity: 2 }]);
+
   return (
     <div className="container mx-auto">
       <Head>
@@ -127,6 +132,28 @@ const Home: NextPage<Props> = ({ items }: Props) => {
               家族を追加
             </button>
           </div>
+        </section>
+
+        {/* 計算結果 */}
+        <section>
+          <table className="mx-auto">
+            <tr>
+              <th>アイテム</th>
+              <th>数量</th>
+            </tr>
+            {backpack.map((v, idx) => {
+              const item = items.find((j) => j.id == v.itemId)!;
+              return (
+                <tr key={idx}>
+                  <td>
+                    <Icon type={item.iconType} maxHeight={100} />
+                    <span>{item.name}</span>
+                  </td>
+                  <td>{v.quantity}</td>
+                </tr>
+              );
+            })}
+          </table>
         </section>
 
         <section>
