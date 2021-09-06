@@ -201,40 +201,44 @@ const Home: NextPage<Props> = ({ items }: Props) => {
           <p>避難リュック、倉庫に備えておくべきもの</p>
 
           <table className="table-auto mx-auto w-full max-w-5xl">
-            <tr>
-              <th>アイテム</th>
-              <th>単位</th>
-              <th>数量</th>
-              <th>合計</th>
-            </tr>
-            {backpack.map((v, idx) => {
-              // 0個のものは表示しない
-              if (v.quantity == 0) return;
+            <thead>
+              <tr>
+                <th>アイテム</th>
+                <th>単位</th>
+                <th>数量</th>
+                <th>合計</th>
+              </tr>
+            </thead>
+            <tbody>
+              {backpack.map((v, idx) => {
+                // 0個のものは表示しない
+                if (v.quantity == 0) return;
 
-              const tdStyle = "border-2 border-black p-4";
-              const item = items.find((j) => j.id == v.itemId)!;
-              return (
-                <tr key={idx}>
-                  {/* アイテム */}
-                  <td className={tdStyle}>
-                    <Icon type={item.iconType} maxHeight={100} />
-                    <span>{item.name}</span>
-                  </td>
-                  {/* 単位 */}
-                  <td
-                    className={tdStyle}
-                  >{`${item.unit.num} ${item.unit.name}`}</td>
-                  {/* 数量 */}
-                  <td className={tdStyle}>{v.quantity}</td>
-                  {/* 合計 */}
-                  <td className={tdStyle}>
-                    <strong>
-                      {`${item.unit.num * v.quantity} ${item.unit.name}`}
-                    </strong>
-                  </td>
-                </tr>
-              );
-            })}
+                const tdStyle = "border-2 border-black p-4";
+                const item = items.find((j) => j.id == v.itemId)!;
+                return (
+                  <tr key={idx}>
+                    {/* アイテム */}
+                    <td className={tdStyle}>
+                      <Icon type={item.iconType} maxHeight={100} />
+                      <span>{item.name}</span>
+                    </td>
+                    {/* 単位 */}
+                    <td
+                      className={tdStyle}
+                    >{`${item.unit.num} ${item.unit.name}`}</td>
+                    {/* 数量 */}
+                    <td className={tdStyle}>{v.quantity}</td>
+                    {/* 合計 */}
+                    <td className={tdStyle}>
+                      <strong>
+                        {`${item.unit.num * v.quantity} ${item.unit.name}`}
+                      </strong>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
           </table>
         </section>
 
