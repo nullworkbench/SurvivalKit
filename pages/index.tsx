@@ -13,6 +13,11 @@ type Item = {
   explanation: string;
   iconType: string;
 };
+// 防災グッズ
+type ItemQuantity = {
+  itemId: number;
+  quantity: number;
+};
 
 // 人
 type Gender = "man" | "woman";
@@ -50,25 +55,59 @@ const Home: NextPage<Props> = ({ items }: Props) => {
   const Taro = new Person("", "man", 21);
   const [persons, setPersons] = useState<Person[]>([Taro]);
 
-  // 計算結果
-  const [backpack, setBackpack] = useState<
-    { itemId: number; quantity: number }[]
-  >([
-    { itemId: 0, quantity: 5 },
-    { itemId: 1, quantity: 9 },
-    { itemId: 2, quantity: 1 },
-    { itemId: 3, quantity: 1 },
-    { itemId: 4, quantity: 1 },
-    { itemId: 5, quantity: 1 },
-    { itemId: 6, quantity: 1 },
-    { itemId: 7, quantity: 3 },
-    { itemId: 9, quantity: 1 },
-  ]);
+  // バックパックの初期値（全てのアイテムが０個）
+  const initialBackpackContent: ItemQuantity[] = items.map((item) => {
+    return { itemId: item.id, quantity: 0 };
+  });
+  // バックパック（計算結果）
+  const [backpack, setBackpack] = useState<ItemQuantity[]>(
+    initialBackpackContent
+  );
 
   // 計算ボタンを押したとき
   function calculateBackpack() {
-    setBackpack([]);
-    persons.map((person) => {});
+    // 新しいbackpack
+    const _new = initialBackpackContent;
+
+    // アイテムを追加する関数
+    function addItems(array: ItemQuantity[]) {
+      array.map((request) => {
+        const target = _new.find((v) => v.itemId == request.itemId)!;
+        target.quantity += request.quantity;
+      });
+    }
+
+    // 世帯人数によって数が決まるアイテム
+    const numOfPersons = persons.length; // 世帯人数
+    const numOfDays = 3; // 備える日数
+    const required: ItemQuantity[] = [
+      { itemId: 0, quantity: 3 * numOfDays * numOfPersons }, // 飲料水（1人3L*日数）
+      { itemId: 2, quantity: Math.round(numOfPersons / 2) }, // 懐中電灯
+      { itemId: 3, quantity: numOfPersons }, // 軍手（人数分）
+      { itemId: 4, quantity: 1 }, // 応急キット
+      { itemId: 6, quantity: 1 }, // ラジオ
+      { itemId: 7, quantity: 1 * numOfDays * numOfPersons }, // トイレットペーパー（日数*人数）
+      { itemId: 9, quantity: numOfPersons }, // 毛布（人数分）
+    ];
+    addItems(required);
+
+    persons.map((person) => {
+      switch (true) {
+        case person.age > 12: {
+          const requests: ItemQuantity[] = [
+            { itemId: 1, quantity: 9 },
+            { itemId: 5, quantity: 1 },
+          ];
+          addItems(requests);
+          break;
+        }
+        default:
+          break;
+      }
+    });
+
+    // backpack更新
+    setBackpack([..._new]);
   }
 
   return (
