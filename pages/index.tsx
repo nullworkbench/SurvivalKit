@@ -47,6 +47,9 @@ const Home: NextPage<Props> = ({ items }: Props) => {
             placeholder="同居人数を入力"
             className="block mx-auto border-solid border-2 border-gray-500 rounded-lg p-2"
           />
+        </section>
+
+        <section>
           <div className="flex">
             {items.map((item, idx) => {
               return (
