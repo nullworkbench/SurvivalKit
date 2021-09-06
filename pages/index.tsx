@@ -208,6 +208,9 @@ const Home: NextPage<Props> = ({ items }: Props) => {
               <th>合計</th>
             </tr>
             {backpack.map((v, idx) => {
+              // 0個のものは表示しない
+              if (v.quantity == 0) return;
+
               const tdStyle = "border-2 border-black p-4";
               const item = items.find((j) => j.id == v.itemId)!;
               return (
