@@ -259,7 +259,27 @@ const Home: NextPage<Props> = ({ items }: Props) => {
       </main>
 
       <footer className="p-5 text-center">
-        <p>アイコンは全てAdobe Illustratorを用いて自作しています。</p>
+        <p>
+          このアプリは
+          <a href="https://nextjs.org" target="_blank" rel="noreferrer">
+            Next.js
+          </a>
+          、
+          <a href="https://tailwindcss.com" target="_blank" rel="noreferrer">
+            Tailwind CSS
+          </a>
+          を使って開発しています。
+        </p>
+        <p>
+          アイコンは
+          <a href="https://heroicons.com" target="_blank" rel="noreferrer">
+            heroicons
+          </a>
+          を一部利用しています。
+        </p>
+        <p>
+          防災グッズのイラストは全てAdobe Illustratorを用いて自作しています。
+        </p>
       </footer>
     </div>
   );
