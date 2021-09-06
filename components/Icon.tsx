@@ -8,6 +8,16 @@ import MobileBattery from "../data/icons/MobileBattery.svg";
 import Radio from "../data/icons/Radio.svg";
 import ToiletPaper from "../data/icons/ToiletPaper.svg";
 import Water from "../data/icons/Water.svg";
+import BabyBottle from "../data/icons/BabyBottle.svg";
+import Blanket from "../data/icons/Blanket.svg";
+import ColoredGarbageBag from "../data/icons/ColoredGarbageBag.svg";
+import Cubemilk from "../data/icons/Cubemilk.svg";
+import Denture from "../data/icons/Denture.svg";
+import MedicineHandbook from "../data/icons/MedicineHandbook.svg";
+import Medicines from "../data/icons/Medicines.svg";
+import Nappy from "../data/icons/Nappy.svg";
+import SanitaryItem from "../data/icons/SanitaryItem.svg";
+import WhistleBuzzer from "../data/icons/WhistleBuzzer.svg";
 
 export const IconType = {
   AlphaRice,
@@ -18,6 +28,16 @@ export const IconType = {
   Radio,
   ToiletPaper,
   Water,
+  BabyBottle,
+  Blanket,
+  ColoredGarbageBag,
+  Cubemilk,
+  Denture,
+  MedicineHandbook,
+  Medicines,
+  Nappy,
+  SanitaryItem,
+  WhistleBuzzer,
 };
 
 interface IconProps {
