@@ -2,108 +2,126 @@
   {
     "id": 0,
     "name": "飲料水",
+    "unit": { "num": 2, "name": "L" },
     "explanation": "災害によって水道などのライフラインが止まってしまう可能性があります。ライフラインの復旧を待つ間のために飲料水を用意しておきましょう。",
     "iconType": "Water"
   },
   {
     "id": 1,
     "name": "アルファ米、レトルト食品",
+    "unit": { "num": 1, "name": "食" },
     "explanation": "災害時には冷蔵庫にアクセスできなくなったり、商店が営業されない可能性があります。避難所が整備されるまでの間のために食料を用意しておきましょう。",
     "iconType": "AlphaRice"
   },
   {
     "id": 2,
     "name": "懐中電灯",
+    "unit": { "num": 1, "name": "個" },
     "explanation": "災害時には電気が使えない可能性があります。夜でも安全に行動するために懐中電灯を用意しておきましょう。予備の電池もあると安心です。",
     "iconType": "Flashlight"
   },
   {
     "id": 3,
     "name": "軍手",
+    "unit": { "num": 1, "name": "組" },
     "explanation": "安全に作業したり、避難するために軍手が必要です。人数分用意しておきましょう。",
     "iconType": "Groves"
   },
   {
     "id": 4,
     "name": "応急キット",
+    "unit": { "num": 1, "name": "箱" },
     "explanation": "怪我をした場合などに素早く処置できるように絆創膏などを用意しましょう。普段使用する薬なども必ず一緒に入れておきましょう。",
     "iconType": "MedicalKit"
   },
   {
     "id": 5,
     "name": "モバイルバッテリー",
+    "unit": { "num": 1, "name": "個" },
     "explanation": "災害時には電気などのライフラインが止まってしまう可能性があります。スマートフォンなどに電力を供給できるモバイルバッテリーを備えておきましょう。",
     "iconType": "MobileBattery"
   },
   {
     "id": 6,
     "name": "ラジオ",
+    "unit": { "num": 1, "name": "台" },
     "explanation": "災害時にもリアルタイム性が高く、復旧が早い情報源であるラジオは必須のアイテムです。",
     "iconType": "Radio"
   },
   {
     "id": 7,
     "name": "トイレットペーパー",
+    "unit": { "num": 1, "name": "ロール" },
     "explanation": "トイレをしたときの他、ティッシュとして使用したりなど汎用的に利用できます。多めに用意しましょう。",
     "iconType": "ToiletPaper"
   },
   {
     "id": 8,
     "name": "哺乳瓶",
+    "unit": { "num": 1, "name": "本" },
     "explanation": "赤ちゃんのための哺乳瓶。使い捨てタイプのものであれば災害時にも清潔を保てます。",
     "iconType": "BabyBottle"
   },
   {
     "id": 9,
     "name": "毛布",
+    "unit": { "num": 1, "name": "枚" },
     "explanation": "冬はもちろん、夏場でも外の夜で熱場合は体が冷えてしまいます。暖を取れるように必ず用意しましょう。断熱シートでも良いです。",
     "iconType": "Blanket"
   },
   {
     "id": 10,
     "name": "色付きゴミ袋",
+    "unit": { "num": 1, "name": "枚" },
     "explanation": "血のついたものなどは色付きゴミ袋に入れておけば精神衛生的に良いです。避難所で生活することも考え、周りの人への配慮にもなります。",
     "iconType": "ColoredGarbageBag"
   },
   {
     "id": 11,
     "name": "粉ミルク",
+    "unit": { "num": 1, "name": "粒" },
     "explanation": "赤ちゃんのための粉ミルクです。長期保存中のうなキューブの粉ミルクが望ましいです。",
     "iconType": "Cubemilk"
   },
   {
     "id": 12,
     "name": "入れ歯",
+    "unit": { "num": 1, "name": "個" },
     "explanation": "入れ歯を使用している場合は替えの入れ歯を用意しておきましょう。洗浄するためのものを一緒に入れておくと良いです。",
     "iconType": "Denture"
   },
   {
     "id": 13,
     "name": "お薬手帳",
+    "unit": { "num": 1, "name": "つ" },
     "explanation": "普段処方されている薬が示されたお薬手帳（コピーでも可）を確認しておきましょう。",
     "iconType": "MedicineHandbook"
   },
   {
     "id": 14,
     "name": "薬",
+    "unit": { "num": 1, "name": "日分" },
     "explanation": "常備薬や持病の薬などを、災害時にも服用を中断することがないよう備えておきましょう。",
     "iconType": "Medicines"
   },
   {
     "id": 15,
     "name": "おむつ",
+    "unit": { "num": 1, "name": "枚" },
     "explanation": "赤ちゃんのためのおむつも普段使っているものを備えておきましょう。",
     "iconType": "Nappy"
   },
   {
     "id": 16,
     "name": "生理用品",
+    "unit": { "num": 1, "name": "日分" },
     "explanation": "避難所での生活では生理用品が不足しがちです。自分が普段使っているものを多めに備えておきましょう。",
     "iconType": "SanitaryItem"
   },
   {
     "id": 17,
     "name": "ホイッスル・防犯ブザー",
+    "unit": { "num": 1, "name": "個" },
     "explanation": "防犯のため、救助を呼ぶためホイッスルか防犯ブザーを用意しておきましょう。特に避難所で生活する場合は常に身につけておくと安心です。",
     "iconType": "WhistleBuzzer"
   }

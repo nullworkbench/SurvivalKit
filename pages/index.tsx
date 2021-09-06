@@ -9,6 +9,7 @@ import React, { useState } from "react";
 type Item = {
   id: number;
   name: string;
+  unit: { num: number; name: string };
   explanation: string;
   iconType: string;
 };
@@ -151,6 +152,9 @@ const Home: NextPage<Props> = ({ items }: Props) => {
                     <Icon type={item.iconType} maxHeight={100} />
                     <span>{item.name}</span>
                   </td>
+                  <td
+                    className={tdStyle}
+                  >{`${item.unit.num}${item.unit.name}`}</td>
                   <td className={tdStyle}>{v.quantity}</td>
                 </tr>
               );
@@ -165,6 +169,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
                 <div key={idx} className="w-3/12">
                   <Icon type={item.iconType} maxHeight={100} />
                   <span className="block text-2xl">{item.name}</span>
+                  <span>{`${item.unit.num} ${item.unit.name}`}</span>
                   <p>{item.explanation}</p>
                 </div>
               );
