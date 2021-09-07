@@ -1,9 +1,11 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import styles from "@/styles/Home.module.scss";
 import Icon from "@/components/Icon";
 import ItemsJson from "@/data/items.json";
 import React, { useState } from "react";
+
+// heroicons
+import { UserCircleIcon } from "@heroicons/react/solid";
 
 // 防災グッズ
 type Item = {
