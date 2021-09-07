@@ -10,7 +10,7 @@ import React, {
 } from "react";
 
 // heroicons
-import { UserCircleIcon } from "@heroicons/react/solid";
+import { UserCircleIcon, PencilAltIcon } from "@heroicons/react/solid";
 
 // 防災グッズ
 type Item = {
@@ -126,7 +126,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     gender: "man",
-    age: 0,
+    age: -1,
   });
   // 人物アイコン設定
   function renderPersonIcon(): JSX.Element {
@@ -161,7 +161,12 @@ const Home: NextPage<Props> = ({ items }: Props) => {
         return icon(60);
         break;
       default:
-        return <UserCircleIcon className="fill-current text-gray-500" />;
+        return (
+          <UserCircleIcon
+            className="fill-current text-yellow-300"
+            style={{ width: "128%", marginLeft: "-14%", marginTop: "-14%" }}
+          />
+        );
         break;
     }
   }
@@ -207,9 +212,15 @@ const Home: NextPage<Props> = ({ items }: Props) => {
         </section>
 
         <section className="mt-10">
-          <div className=" border-black border-2 mb-2 p-8">
+          <div
+            className="mx-auto border-black border-2 rounded-xl mb-2 p-8"
+            style={{ maxWidth: "30rem" }}
+          >
             {/* アイコン */}
-            <div className="relative w-1/2 mx-auto border-8 border-yellow-300 rounded-full  overflow-hidden">
+            <div
+              className="relative w-5/6 mx-auto border-8 border-yellow-300 rounded-full overflow-hidden"
+              style={{ maxWidth: "10rem" }}
+            >
               <div style={{ paddingBottom: "100%" }}>
                 <div className="absolute top-0 left-0 w-full">
                   {renderPersonIcon()}
@@ -217,26 +228,26 @@ const Home: NextPage<Props> = ({ items }: Props) => {
               </div>
             </div>
             {/* 名前 */}
-            <div>
+            <div className="flex justify-center py-4">
               <input
                 type="text"
-                id={`inputArea1`}
+                id="inputArea1"
                 name="name"
-                placeholder="名前を入力（省略可）"
-                className="bg-transparent focus:outline-none"
+                placeholder="名前を入力"
+                // className="block w-max ml-6 text-center bg-transparent focus:outline-none"
+                className="block text-center border-solid border-2 border-gray-500 rounded-lg outline-none p-2"
                 onChange={(e) => hundleInputChange(e)}
               />
-              <span>さん</span>
+              {/* <PencilAltIcon
+                className="w-6 fill-current text-gray-500"
+                onClick={() => document.getElementById("inputArea1")?.focus()}
+              /> */}
             </div>
 
             <div className="flex justify-center pb-4">
-              <label htmlFor={`inputArea2`} className="p-2 mr-4">
-                性別
-              </label>
               <select
-                id={`inputArea2`}
                 name="gender"
-                className="block border-solid border-2 border-gray-500 rounded-lg p-2"
+                className="block border-solid border-2 border-gray-500 rounded-lg outline-none p-2"
                 onChange={(e) => hundleInputChange(e)}
               >
                 <option value="man">男性</option>
@@ -244,20 +255,24 @@ const Home: NextPage<Props> = ({ items }: Props) => {
               </select>
             </div>
             <div className="flex justify-center pb-4">
-              <label htmlFor={`inputArea3`} className="p-2 mr-4">
-                年齢
-              </label>
               <input
                 type="number"
-                id={`inputArea3`}
+                id="inputArea2"
                 name="age"
                 placeholder="年齢を入力"
-                className="block border-solid border-2 border-gray-500 rounded-lg p-2"
+                className="w-28 text-center border-solid border-2 border-gray-500 rounded-lg outline-none p-2"
+                min={0}
                 onChange={(e) => hundleInputChange(e)}
               />
+              <span className="block py-2 pl-2">才</span>
             </div>
 
-            <button onClick={() => addPersonBtn()}>追加</button>
+            <button
+              className="w-full mt-6 text-white font-semibold bg-blue-400 px-12 py-3 rounded-lg"
+              onClick={() => addPersonBtn()}
+            >
+              追加
+            </button>
           </div>
 
           <h3>世帯人数：{persons.length}</h3>
@@ -269,16 +284,6 @@ const Home: NextPage<Props> = ({ items }: Props) => {
           {/* 計算する */}
           <div>
             <button onClick={() => calculateBackpack()}>計算する</button>
-          </div>
-
-          {/* 人を追加する */}
-          <div className="mt-4">
-            <button
-              className="text-white font-semibold bg-blue-400 px-8 py-3 rounded-lg"
-              onClick={() => setPersons([...persons, new Person("", "man", 0)])}
-            >
-              家族を追加
-            </button>
           </div>
         </section>
 
@@ -330,7 +335,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
         </section>
 
         <section>
-          <div className="flex">
+          <div className="flex flex-wrap">
             {items.map((item, idx) => {
               return (
                 <div key={idx} className="w-3/12">
