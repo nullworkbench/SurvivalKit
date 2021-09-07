@@ -128,8 +128,21 @@ const Home: NextPage<Props> = ({ items }: Props) => {
     gender: "man",
     age: 0,
   });
+  // 人物アイコン設定
+  function renderPersonIcon(): JSX.Element {
+    switch (true) {
+      case formData.age < 3 && formData.age >= 0:
+        return <Icon type="Baby" />;
+        break;
+      default:
+        return <UserCircleIcon className="fill-current text-gray-500" />;
+        break;
+    }
+  }
   // フォームの内容を変更したとき
-  function hundleInputChange(event: ChangeEvent<HTMLInputElement>) {
+  function hundleInputChange(
+    event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) {
     const _new = { ...formData };
     const val = event.target.value;
     switch (event.target.name) {
@@ -137,10 +150,10 @@ const Home: NextPage<Props> = ({ items }: Props) => {
         _new.name = val;
         break;
       case "gender":
-        _new.gender = val;
+        _new.gender = val == "man" ? "man" : "woman";
         break;
       case "age":
-        _new.age = Number(val);
+        _new.age = val ? Number(val) : -1;
         break;
       default:
         break;
@@ -168,25 +181,14 @@ const Home: NextPage<Props> = ({ items }: Props) => {
         </section>
 
         <section className="mt-10">
-          <div className="border-black border-2 mb-2 p-8">
+          <div className=" border-black border-2 mb-2 p-8">
             {/* アイコン */}
-            <div>
-              {() => {
-                if (person.age) {
-                  switch (true) {
-                    case person.age < 3:
-                      return <Icon type="Baby" />;
-                      break;
-
-                    default:
-                      break;
-                  }
-                } else {
-                  return (
-                    <UserCircleIcon className="fill-current text-gray-500" />
-                  );
-                }
-              }}
+            <div className="relative w-1/2 mx-auto border-8 border-yellow-300 rounded-full  overflow-hidden">
+              <div style={{ paddingBottom: "100%" }}>
+                <div className="absolute top-0 left-0 w-full">
+                  {renderPersonIcon()}
+                </div>
+              </div>
             </div>
             {/* 名前 */}
             <div>
