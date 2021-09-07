@@ -2,7 +2,12 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Icon from "@/components/Icon";
 import ItemsJson from "@/data/items.json";
-import React, { useState } from "react";
+import React, {
+  ChangeEvent,
+  ChangeEventHandler,
+  FormEventHandler,
+  useState,
+} from "react";
 
 // heroicons
 import { UserCircleIcon } from "@heroicons/react/solid";
@@ -54,8 +59,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
   ];
 
   // 世帯人数
-  const Taro = new Person("", "man", 21);
-  const [persons, setPersons] = useState<Person[]>([Taro]);
+  const [persons, setPersons] = useState<Person[]>([]);
 
   // バックパックの初期値（全てのアイテムが０個）
   const initialBackpackContent: ItemQuantity[] = items.map((item) => {
@@ -112,6 +116,40 @@ const Home: NextPage<Props> = ({ items }: Props) => {
     setBackpack([..._new]);
   }
 
+  // Form
+  // FormData
+  type FormData = {
+    name: string;
+    gender: "man" | "woman";
+    age: number;
+  };
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
+    gender: "man",
+    age: 0,
+  });
+  // フォームの内容を変更したとき
+  function hundleInputChange(event: ChangeEvent<HTMLInputElement>) {
+    const _new = { ...formData };
+    const val = event.target.value;
+    switch (event.target.name) {
+      case "name":
+        _new.name = val;
+        break;
+      case "gender":
+        _new.gender = val;
+        break;
+      case "age":
+        _new.age = Number(val);
+        break;
+      default:
+        break;
+    }
+    setFormData(_new);
+  }
+  // 追加ボタンを押したとき
+  function addPersonBtn() {}
+
   return (
     <div className="container mx-auto">
       <Head>
@@ -130,79 +168,74 @@ const Home: NextPage<Props> = ({ items }: Props) => {
         </section>
 
         <section className="mt-10">
+          <div className="border-black border-2 mb-2 p-8">
+            {/* アイコン */}
+            <div>
+              {() => {
+                if (person.age) {
+                  switch (true) {
+                    case person.age < 3:
+                      return <Icon type="Baby" />;
+                      break;
+
+                    default:
+                      break;
+                  }
+                } else {
+                  return (
+                    <UserCircleIcon className="fill-current text-gray-500" />
+                  );
+                }
+              }}
+            </div>
+            {/* 名前 */}
+            <div>
+              <input
+                type="text"
+                id={`inputArea1`}
+                name="name"
+                placeholder="名前を入力（省略可）"
+                className="bg-transparent focus:outline-none"
+                onChange={(e) => hundleInputChange(e)}
+              />
+              <span>さん</span>
+            </div>
+
+            <div className="flex justify-center pb-4">
+              <label htmlFor={`inputArea2`} className="p-2 mr-4">
+                性別
+              </label>
+              <select
+                id={`inputArea2`}
+                name="gender"
+                className="block border-solid border-2 border-gray-500 rounded-lg p-2"
+                onChange={(e) => hundleInputChange(e)}
+              >
+                <option value="man">男性</option>
+                <option value="woman">女性</option>
+              </select>
+            </div>
+            <div className="flex justify-center pb-4">
+              <label htmlFor={`inputArea3`} className="p-2 mr-4">
+                年齢
+              </label>
+              <input
+                type="text"
+                id={`inputArea3`}
+                name="age"
+                placeholder="年齢を入力"
+                className="block border-solid border-2 border-gray-500 rounded-lg p-2"
+                onChange={(e) => hundleInputChange(e)}
+              />
+            </div>
+
+            <button onClick={() => addPersonBtn()}>追加</button>
+          </div>
+
           <h3>世帯人数：{persons.length}</h3>
           <div className="flex flex-wrap justify-center">
             {/* 世帯人数の数だけ繰り返す */}
-            {persons.map((person, idx) => {
-              const InputWrap = (props: {
-                name: string;
-                children: React.ReactNode;
-              }) => {
-                return (
-                  <div className="flex justify-center pb-4">
-                    <label htmlFor={`inputArea${idx}`} className="p-2 mr-4">
-                      {props.name}
-                    </label>
-                    {props.children}
-                  </div>
-                );
-              };
-
-              const inputStyle =
-                "block border-solid border-2 border-gray-500 rounded-lg p-2";
-              return (
-                <form key={idx} className="border-black border-2 mb-2 p-8">
-                  {/* アイコン */}
-                  <div>
-                    {() => {
-                      if (person.age) {
-                        switch (true) {
-                          case person.age < 3:
-                            return <Icon type="Baby" />;
-                            break;
-
-                          default:
-                            break;
-                        }
-                      } else {
-                        return (
-                          <UserCircleIcon className="fill-current text-gray-500" />
-                        );
-                      }
-                    }}
-                  </div>
-                  {/* 名前 */}
-                  <div>
-                    <input
-                      type="text"
-                      id={`${idx}_inputArea1`}
-                      placeholder="名前を入力（省略可）"
-                      className="bg-transparent focus:outline-none"
-                    />
-                    <span>さん</span>
-                  </div>
-
-                  <InputWrap name="性別">
-                    <select
-                      id={`inputArea${idx}`}
-                      placeholder="年齢を入力"
-                      className={inputStyle}
-                    >
-                      <option value="man">男性</option>
-                      <option value="woman">女性</option>
-                    </select>
-                  </InputWrap>
-                  <InputWrap name="年齢">
-                    <input
-                      type="text"
-                      id={`inputArea${idx}`}
-                      placeholder="年齢を入力"
-                      className={inputStyle}
-                    />
-                  </InputWrap>
-                </form>
-              );
-            })}
+            {persons.map((person, idx) => {})}
           </div>
 
           {/* 計算する */}
