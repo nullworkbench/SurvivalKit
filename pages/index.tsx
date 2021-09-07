@@ -70,7 +70,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
     initialBackpackContent
   );
 
-  // 計算ボタンを押したとき
+  // バックパックを計算
   function calculateBackpack() {
     // 新しいbackpack
     const _new = initialBackpackContent;
@@ -192,7 +192,23 @@ const Home: NextPage<Props> = ({ items }: Props) => {
     setFormData(_new);
   }
   // 追加ボタンを押したとき
-  function addPersonBtn() {}
+  function addPersonBtn() {
+    // 年齢が未入力の場合は早期return
+    const ageInput = document.getElementById("inputArea2") as HTMLInputElement;
+    if (!ageInput.value) {
+      alert("年齢を入力してください");
+      return;
+    }
+    // formDataからPersonを作成しpersonsに合併
+    const p: Person = {
+      name: formData.name,
+      gender: formData.gender,
+      age: formData.age,
+    };
+    setPersons([...persons, p]);
+    // バックパック計算
+    calculateBackpack();
+  }
 
   return (
     <div className="container mx-auto">
@@ -279,11 +295,6 @@ const Home: NextPage<Props> = ({ items }: Props) => {
           <div className="flex flex-wrap justify-center">
             {/* 世帯人数の数だけ繰り返す */}
             {persons.map((person, idx) => {})}
-          </div>
-
-          {/* 計算する */}
-          <div>
-            <button onClick={() => calculateBackpack()}>計算する</button>
           </div>
         </section>
 
