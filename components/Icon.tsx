@@ -69,7 +69,7 @@ export const IconType = {
 interface IconProps {
   type: keyof typeof IconType;
   size?: number;
-  maxHeight: number;
+  maxHeight?: number;
   fill?: string;
 }
 

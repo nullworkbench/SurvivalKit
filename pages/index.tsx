@@ -154,7 +154,22 @@ const Home: NextPage<Props> = ({ items }: Props) => {
                 <form key={idx} className="border-black border-2 mb-2 p-8">
                   {/* アイコン */}
                   <div>
-                    <UserCircleIcon className="fill-current text-gray-500" />
+                    {() => {
+                      if (person.age) {
+                        switch (true) {
+                          case person.age < 3:
+                            return <Icon type="Baby" />;
+                            break;
+
+                          default:
+                            break;
+                        }
+                      } else {
+                        return (
+                          <UserCircleIcon className="fill-current text-gray-500" />
+                        );
+                      }
+                    }}
                   </div>
                   {/* 名前 */}
                   <div>
