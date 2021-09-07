@@ -130,9 +130,35 @@ const Home: NextPage<Props> = ({ items }: Props) => {
   });
   // 人物アイコン設定
   function renderPersonIcon(): JSX.Element {
+    const age = formData.age;
+    const gender = formData.gender;
+
+    const icon = (n: number) => {
+      return gender == "man" ? (
+        <Icon type={`Man${n}`} />
+      ) : (
+        <Icon type={`Woman${n}`} />
+      );
+    };
+
     switch (true) {
-      case formData.age < 3 && formData.age >= 0:
+      case age < 3 && age >= 0:
         return <Icon type="Baby" />;
+        break;
+      case age >= 3 && age < 10:
+        return icon(3);
+        break;
+      case age >= 10 && age < 20:
+        return icon(10);
+        break;
+      case age >= 20 && age < 40:
+        return icon(20);
+        break;
+      case age >= 40 && age < 60:
+        return icon(40);
+        break;
+      case age >= 60:
+        return icon(60);
         break;
       default:
         return <UserCircleIcon className="fill-current text-gray-500" />;
@@ -222,7 +248,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
                 年齢
               </label>
               <input
-                type="text"
+                type="number"
                 id={`inputArea3`}
                 name="age"
                 placeholder="年齢を入力"
