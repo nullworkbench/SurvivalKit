@@ -1,5 +1,6 @@
 import styled from "styled-components";
 // svg（babelのプラグインは絶対パスが使用できないので相対パスで）
+// 防災グッズ
 import AlphaRice from "../data/icons/AlphaRice.svg";
 import Flashlight from "../data/icons/Flashlight.svg";
 import Groves from "../data/icons/Groves.svg";
@@ -18,8 +19,21 @@ import Medicines from "../data/icons/Medicines.svg";
 import Nappy from "../data/icons/Nappy.svg";
 import SanitaryItem from "../data/icons/SanitaryItem.svg";
 import WhistleBuzzer from "../data/icons/WhistleBuzzer.svg";
+// 人物
+import Baby from "../data/icons/soko-st/Baby.svg";
+import Man3 from "../data/icons/soko-st/Man3.svg";
+import Man10 from "../data/icons/soko-st/Man10.svg";
+import Man20 from "../data/icons/soko-st/Man20.svg";
+import Man40 from "../data/icons/soko-st/Man40.svg";
+import Man60 from "../data/icons/soko-st/Man60.svg";
+import Woman3 from "../data/icons/soko-st/Woman3.svg";
+import Woman10 from "../data/icons/soko-st/Woman10.svg";
+import Woman20 from "../data/icons/soko-st/Woman20.svg";
+import Woman40 from "../data/icons/soko-st/Woman40.svg";
+import Woman60 from "../data/icons/soko-st/Woman60.svg";
 
 export const IconType = {
+  // 防災グッズ
   AlphaRice,
   Flashlight,
   Groves,
@@ -38,6 +52,18 @@ export const IconType = {
   Nappy,
   SanitaryItem,
   WhistleBuzzer,
+  // 人物
+  Baby,
+  Man3,
+  Man10,
+  Man20,
+  Man40,
+  Man60,
+  Woman3,
+  Woman10,
+  Woman20,
+  Woman40,
+  Woman60,
 };
 
 interface IconProps {
