@@ -183,6 +183,8 @@ const Home: NextPage<Props> = ({ items }: Props) => {
                         setPersons((_current) => {
                           return _current.splice(idx, 1);
                         });
+                        // バックパック再計算
+                        calculateBackpack(persons.length - 1);
                       }}
                     >
                       <MinusCircleIcon className="bg-white rounded-full fill-current text-red-400" />
