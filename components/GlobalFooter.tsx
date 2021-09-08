@@ -47,6 +47,18 @@ const GlobalFooter: React.FC = () => {
         を利用しています。
       </p>
       <p>防災グッズのイラストは全てAdobe Illustratorを用いて自作しています。</p>
+      <p>
+        必要な防災グッズは
+        <a
+          href="https://www.alsok.co.jp/person/recommend/1003/"
+          target="_blank"
+          rel="noreferrer"
+          className="font-semibold text-blue-500"
+        >
+          ALSOK公式HP
+        </a>
+        を参考にしました。
+      </p>
     </footer>
   );
 };
