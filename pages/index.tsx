@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import Modal from "@/components/Modal";
 import Icon from "@/components/Icon";
 import PersonIcon from "@/components/PersonIcon";
 import ItemsJson from "@/data/items.json";
@@ -22,6 +23,9 @@ export async function getStaticProps() {
 const Home: NextPage<Props> = ({ items }: Props) => {
   // styled
   const h2style = "text-4xl font-semibold";
+
+  // 詳細モーダルで表示したいitemId
+  const [detailItemId, setDetailItemId] = useState<number>(0);
 
   // 世帯人数
   const [persons, setPersons] = useState<Person[]>([]);
@@ -134,6 +138,11 @@ const Home: NextPage<Props> = ({ items }: Props) => {
     // フォームの入力内容をクリア
     setFormData({ name: "", gender: "man", age: -1 });
     ageInput.value = "";
+  }
+
+  // アイテムの詳細モーダル
+  function openDetailModal(itemId: number) {
+    setDetailItemId(itemId);
   }
 
   return (
@@ -273,6 +282,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
                 <th>単位</th>
                 <th>数量</th>
                 <th>合計</th>
+                <th>詳細</th>
               </tr>
             </thead>
             <tbody>
@@ -301,11 +311,38 @@ const Home: NextPage<Props> = ({ items }: Props) => {
                         {`${item.unit.num * v.quantity} ${item.unit.name}`}
                       </strong>
                     </td>
+                    {/* 詳細 */}
+                    <td className={tdStyle}>
+                      <button
+                        className="text-blue-400"
+                        onClick={() => openDetailModal(item.id)}
+                      >
+                        詳細
+                      </button>
+                    </td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
+          {/* アイテムの詳細モーダル */}
+          <div>
+            <Modal />
+            {/* <div></div>
+            <div>
+              {(() => {
+                const v = items.find((i) => i.id == detailItemId)!;
+                return (
+                  <>
+                    <Icon type={v.iconType} maxHeight={100} />
+                    <span className="block text-2xl">{v.name}</span>
+                    <span>{`${v.unit.num} ${v.unit.name}`}</span>
+                    <p>{v.explanation}</p>
+                  </>
+                );
+              })()}
+            </div> */}
+          </div>
         </section>
 
         <section>
