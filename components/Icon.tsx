@@ -32,7 +32,7 @@ import Woman20 from "../data/icons/soko-st/Woman20.svg";
 import Woman40 from "../data/icons/soko-st/Woman40.svg";
 import Woman60 from "../data/icons/soko-st/Woman60.svg";
 
-export const IconType = {
+export const IconTypes = {
   // 防災グッズ
   AlphaRice,
   Flashlight,
@@ -66,8 +66,10 @@ export const IconType = {
   Woman60,
 };
 
+type IconType = keyof typeof IconTypes;
+
 interface IconProps {
-  type: keyof typeof IconType;
+  type: IconType | string;
   size?: number;
   maxHeight?: number;
   fill?: string;
@@ -75,7 +77,7 @@ interface IconProps {
 
 const Icon: React.FC<IconProps> = (props) => {
   const { type, size, maxHeight, fill } = props;
-  const IconSvgFile = IconType[type];
+  const IconSvgFile = IconTypes[type as IconType];
 
   return (
     <IconSvgFile

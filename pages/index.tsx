@@ -84,7 +84,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
   // FormData
   type FormData = {
     name: string;
-    gender: "man" | "woman";
+    gender: Gender;
     age: number;
   };
   const [formData, setFormData] = useState<FormData>({
