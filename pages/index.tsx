@@ -2,12 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Icon from "@/components/Icon";
 import ItemsJson from "@/data/items.json";
-import React, {
-  ChangeEvent,
-  ChangeEventHandler,
-  FormEventHandler,
-  useState,
-} from "react";
+import { ChangeEvent, useState } from "react";
 
 // heroicons
 import { UserCircleIcon, PencilAltIcon } from "@heroicons/react/solid";
@@ -28,17 +23,11 @@ type ItemQuantity = {
 
 // 人
 type Gender = "man" | "woman";
-class Person {
+type Person = {
   name?: string;
   gender: Gender;
   age: number;
-
-  constructor(name?: string, gender: Gender, age: number) {
-    this.name = name;
-    this.gender = gender;
-    this.age = age;
-  }
-}
+};
 
 type Props = {
   items: Item[];
@@ -52,6 +41,9 @@ export async function getStaticProps() {
 }
 
 const Home: NextPage<Props> = ({ items }: Props) => {
+  // styled
+  const h2style = "text-4xl font-semibold";
+
   // 入力項目
   const inputEntries = [
     { name: "名前", type: "text", placeholder: "名前を入力（省略可）" },
@@ -71,7 +63,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
   );
 
   // バックパックを計算
-  function calculateBackpack() {
+  function calculateBackpack(numOfPersons: number) {
     // 新しいbackpack
     const _new = initialBackpackContent;
 
@@ -84,7 +76,6 @@ const Home: NextPage<Props> = ({ items }: Props) => {
     }
 
     // 世帯人数によって数が決まるアイテム
-    const numOfPersons = persons.length; // 世帯人数
     const numOfDays = 3; // 備える日数
     const required: ItemQuantity[] = [
       { itemId: 0, quantity: 3 * numOfDays * numOfPersons }, // 飲料水（1人3L*日数）
@@ -207,7 +198,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
     };
     setPersons([...persons, p]);
     // バックパック計算
-    calculateBackpack();
+    calculateBackpack(persons.length + 1);
   }
 
   return (
@@ -222,12 +213,13 @@ const Home: NextPage<Props> = ({ items }: Props) => {
       </Head>
 
       <main className="pt-20 px-8 min-h-screen text-center">
-        <section>
+        <section className="mb-20">
           <h1 className="text-6xl font-bold">Survival Kit</h1>
           <p className="mt-3">最低限必要な防災グッズを計算するツール</p>
         </section>
 
-        <section className="mt-10">
+        <section>
+          <h2 className={h2style}>Your Family Member</h2>
           <div
             className="mx-auto border-black border-2 rounded-xl mb-2 p-8"
             style={{ maxWidth: "30rem" }}
@@ -300,7 +292,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
 
         {/* 計算結果 */}
         <section>
-          <h2 className="text-4xl font-semibold">Your Backpack</h2>
+          <h2 className={h2style}>Your Backpack</h2>
           <p>避難リュック、倉庫に備えておくべきもの</p>
 
           <table className="table-auto mx-auto w-full max-w-5xl">
