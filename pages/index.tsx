@@ -131,6 +131,9 @@ const Home: NextPage<Props> = ({ items }: Props) => {
     setPersons([...persons, p]);
     // バックパック計算
     calculateBackpack(persons.length + 1);
+    // フォームの入力内容をクリア
+    setFormData({ name: "", gender: "man", age: -1 });
+    ageInput.value = "";
   }
 
   return (
@@ -214,6 +217,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
                 placeholder="名前を入力"
                 // className="block w-max ml-6 text-center bg-transparent focus:outline-none"
                 className="block text-center border-solid border-2 border-gray-500 rounded-lg outline-none p-2"
+                value={formData.name}
                 onChange={(e) => hundleInputChange(e)}
               />
               {/* <PencilAltIcon
@@ -226,6 +230,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
               <select
                 name="gender"
                 className="block border-solid border-2 border-gray-500 rounded-lg outline-none p-2"
+                value={formData.gender}
                 onChange={(e) => hundleInputChange(e)}
               >
                 <option value="man">男性</option>
