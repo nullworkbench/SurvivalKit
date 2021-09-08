@@ -6,7 +6,7 @@ import ItemsJson from "@/data/items.json";
 import { ChangeEvent, useState } from "react";
 
 // heroicons
-import { UserCircleIcon, PencilAltIcon } from "@heroicons/react/solid";
+import { MinusCircleIcon } from "@heroicons/react/solid";
 
 type Props = {
   items: Item[];
@@ -163,11 +163,30 @@ const Home: NextPage<Props> = ({ items }: Props) => {
               {/* 世帯人数の数だけ繰り返す */}
               {persons.map((person, idx) => {
                 return (
-                  <div key={idx} className="mx-5 mb-5">
+                  <div key={idx} className="relative mx-5 mb-5">
                     <PersonIcon age={person.age} gender={person.gender} />
                     <span className="block mt-2">
                       {person.name ? person.name : "名無しさん"} ({person.age})
                     </span>
+                    <div
+                      className="absolute -top-1.5 -right-3.5 w-1/3"
+                      onClick={() => {
+                        if (
+                          confirm(
+                            `${person.name ? person.name : "名無しさん"} (${
+                              person.age
+                            }) をメンバー一覧から削除しますか？`
+                          ) == false
+                        )
+                          return;
+
+                        setPersons((_current) => {
+                          return _current.splice(idx, 1);
+                        });
+                      }}
+                    >
+                      <MinusCircleIcon className="bg-white rounded-full fill-current text-red-400" />
+                    </div>
                   </div>
                 );
               })}
