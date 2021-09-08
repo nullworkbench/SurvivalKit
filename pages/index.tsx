@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Icon from "@/components/Icon";
+import PersonIcon from "@/components/PersonIcon";
 import ItemsJson from "@/data/items.json";
 import { ChangeEvent, useState } from "react";
 
@@ -92,48 +93,6 @@ const Home: NextPage<Props> = ({ items }: Props) => {
     gender: "man",
     age: -1,
   });
-  // 人物アイコン設定
-  function renderPersonIcon(): JSX.Element {
-    const age = formData.age;
-    const gender = formData.gender;
-
-    const icon = (n: number) => {
-      return gender == "man" ? (
-        <Icon type={`Man${n}`} />
-      ) : (
-        <Icon type={`Woman${n}`} />
-      );
-    };
-
-    switch (true) {
-      case age < 3 && age >= 0:
-        return <Icon type="Baby" />;
-        break;
-      case age >= 3 && age < 10:
-        return icon(3);
-        break;
-      case age >= 10 && age < 20:
-        return icon(10);
-        break;
-      case age >= 20 && age < 40:
-        return icon(20);
-        break;
-      case age >= 40 && age < 60:
-        return icon(40);
-        break;
-      case age >= 60:
-        return icon(60);
-        break;
-      default:
-        return (
-          <UserCircleIcon
-            className="fill-current text-yellow-300"
-            style={{ width: "128%", marginLeft: "-14%", marginTop: "-14%" }}
-          />
-        );
-        break;
-    }
-  }
   // フォームの内容を変更したとき
   function hundleInputChange(
     event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -191,23 +150,40 @@ const Home: NextPage<Props> = ({ items }: Props) => {
           <p className="mt-3">最低限必要な防災グッズを計算するツール</p>
         </section>
 
-        <section>
-          <h2 className={h2style}>Your Family Member</h2>
+        <section className="mb-20">
+          <h2 className={`${h2style} mb-4`}>Family Members</h2>
+
+          {/* メンバー一覧 */}
+          <section className="mb-5">
+            <h3 className="text-lg mb-3">
+              世帯人数：
+              <span className="text-2xl font-semibold">{persons.length}</span>
+            </h3>
+            <div className="flex flex-wrap justify-center">
+              {/* 世帯人数の数だけ繰り返す */}
+              {persons.map((person, idx) => {
+                return (
+                  <div key={idx} className="mx-5 mb-5">
+                    <PersonIcon age={person.age} gender={person.gender} />
+                    <span className="block mt-2">
+                      {person.name ? person.name : "名無しさん"} ({person.age})
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* メンバー追加 */}
           <div
             className="mx-auto border-black border-2 rounded-xl mb-2 p-8"
             style={{ maxWidth: "30rem" }}
           >
+            <h3 className="text-2xl font-semibold mb-5">Add Member</h3>
+
             {/* アイコン */}
-            <div
-              className="relative w-5/6 mx-auto border-8 border-yellow-300 rounded-full overflow-hidden"
-              style={{ maxWidth: "10rem" }}
-            >
-              <div style={{ paddingBottom: "100%" }}>
-                <div className="absolute top-0 left-0 w-full">
-                  {renderPersonIcon()}
-                </div>
-              </div>
-            </div>
+            <PersonIcon age={formData.age} gender={formData.gender} />
+
             {/* 名前 */}
             <div className="flex justify-center py-4">
               <input
@@ -255,16 +231,10 @@ const Home: NextPage<Props> = ({ items }: Props) => {
               追加
             </button>
           </div>
-
-          <h3>世帯人数：{persons.length}</h3>
-          <div className="flex flex-wrap justify-center">
-            {/* 世帯人数の数だけ繰り返す */}
-            {persons.map((person, idx) => {})}
-          </div>
         </section>
 
         {/* 計算結果 */}
-        <section>
+        <section className="mb-20">
           <h2 className={h2style}>Your Backpack</h2>
           <p>避難リュック、倉庫に備えておくべきもの</p>
 
