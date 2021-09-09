@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Modal from "@/components/Modal";
+import AlertModal from "@/components/Modals/AlertModal";
 import Icon from "@/components/Icon";
 import PersonIcon from "@/components/PersonIcon";
 import ItemsJson from "@/data/items.json";
@@ -327,7 +327,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
           </table>
           {/* アイテムの詳細モーダル */}
           <div>
-            <Modal />
+            <AlertModal title="Title" body="Body" />
             {/* <div></div>
             <div>
               {(() => {

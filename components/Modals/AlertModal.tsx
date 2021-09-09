@@ -1,7 +1,12 @@
 import { Transition, Dialog } from "@headlessui/react";
 import { Fragment, useState } from "react";
 
-const Modal: React.FC = () => {
+type Props = {
+  title: string;
+  body: string;
+};
+
+const Modal: React.FC<Props> = ({ title, body }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -15,7 +20,7 @@ const Modal: React.FC = () => {
           className="fixed z-10 inset-0 overflow-y-auto"
           onClose={setIsOpen}
         >
-          <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sp:block sp:py-0">
+          <div className="min-h-screen px-4 text-center">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -47,16 +52,13 @@ const Modal: React.FC = () => {
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  アイテム名
+                  {title}
                 </Dialog.Title>
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">
-                    Your payment has been successfully submitted. We’ve sent
-                    your an email with all of the details of your order.
-                  </p>
+                  <p className="text-sm text-gray-500">{body}</p>
                 </div>
 
-                <div className="mt-4">
+                <div className="flex items-end mt-4">
                   <button
                     className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                     onClick={() => setIsOpen(false)}
