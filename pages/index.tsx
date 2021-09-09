@@ -55,26 +55,49 @@ const Home: NextPage<Props> = ({ items }: Props) => {
       { itemId: 2, quantity: Math.round(numOfPersons / 2) }, // 懐中電灯
       { itemId: 3, quantity: numOfPersons }, // 軍手（人数分）
       { itemId: 4, quantity: 1 }, // 応急キット
+      { itemId: 5, quantity: Math.round(numOfPersons / 2) }, // モバイルバッテリー
       { itemId: 6, quantity: 1 }, // ラジオ
       { itemId: 7, quantity: 1 * numOfDays * numOfPersons }, // トイレットペーパー（日数*人数）
-      { itemId: 9, quantity: numOfPersons }, // 毛布（人数分）
+      { itemId: 8, quantity: numOfPersons }, // 毛布（人数分）
     ];
     addItems(required);
 
     // 人によって変わるアイテム
     persons.map((person) => {
+      // １歳以上の食料
+      if (person.age >= 1)
+        addItems([{ itemId: 1, quantity: 3 * 3 * numOfDays }]);
+
+      const requests: ItemQuantity[] = [];
       switch (true) {
-        case person.age > 12: {
-          const requests: ItemQuantity[] = [
-            { itemId: 1, quantity: 9 },
-            { itemId: 5, quantity: 1 },
-          ];
-          addItems(requests);
+        // 赤ちゃん（１歳未満）
+        case person.age <= 1: {
+          requests.push({ itemId: 9, quantity: 7 * numOfDays }); // 使い捨て哺乳瓶
+          requests.push({ itemId: 10, quantity: 4 * 7 * numOfDays }); // 粉ミルク
+          requests.push({ itemId: 11, quantity: 10 * numOfDays }); // おむつ
+          break;
+        }
+        // 幼児（４歳未満）
+        case person.age < 4: {
+          requests.push({ itemId: 11, quantity: 6 * numOfDays }); // おむつ
+          break;
+        }
+        case person.gender == "woman" && person.age >= 10: {
+          requests.push({ itemId: 12, quantity: numOfDays }); // 生理用品
+          requests.push({ itemId: 13, quantity: 3 * numOfDays }); // 色付きゴミ袋
+          requests.push({ itemId: 14, quantity: 1 }); // ホイッスル・防犯ブザー
+          break;
+        }
+        case person.age >= 60: {
+          requests.push({ itemId: 15, quantity: 1 }); // 入れ歯
+          requests.push({ itemId: 16, quantity: 1 }); // お薬手帳
+          requests.push({ itemId: 17, quantity: numOfDays }); // 持病の薬
           break;
         }
         default:
           break;
       }
+      addItems(requests);
     });
 
     // backpack更新
