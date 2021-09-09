@@ -15,7 +15,7 @@ const Modal: React.FC = () => {
           className="fixed z-10 inset-0 overflow-y-auto"
           onClose={setIsOpen}
         >
-          <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+          <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sp:block sp:py-0">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -25,7 +25,7 @@ const Modal: React.FC = () => {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay />
+              <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-30" />
             </Transition.Child>
             <span
               className="inline-block h-screen align-middle"
