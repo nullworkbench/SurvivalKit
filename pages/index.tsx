@@ -293,8 +293,8 @@ const Home: NextPage<Props> = ({ items }: Props) => {
             <thead>
               <tr>
                 <th>アイテム</th>
-                <th>単位</th>
-                <th>数量</th>
+                {/* <th>単位</th> */}
+                {/* <th>数量</th> */}
                 <th>合計</th>
               </tr>
             </thead>
@@ -308,18 +308,18 @@ const Home: NextPage<Props> = ({ items }: Props) => {
                 return (
                   <tr key={idx}>
                     {/* アイテム */}
-                    <td className={tdStyle}>
+                    <td className={`${tdStyle} flex-grow`}>
                       <Icon type={item.iconType} maxHeight={100} />
                       <span>{item.name}</span>
                     </td>
                     {/* 単位 */}
-                    <td
+                    {/* <td
                       className={tdStyle}
-                    >{`${item.unit.num} ${item.unit.name}`}</td>
+                    >{`${item.unit.num} ${item.unit.name}`}</td> */}
                     {/* 数量 */}
-                    <td className={tdStyle}>{v.quantity}</td>
+                    {/* <td className={tdStyle}>{v.quantity}</td> */}
                     {/* 合計 */}
-                    <td className={tdStyle}>
+                    <td className={`${tdStyle} w-1/3`}>
                       <strong>
                         {`${item.unit.num * v.quantity} ${item.unit.name}`}
                       </strong>
