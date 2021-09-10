@@ -386,7 +386,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
             計算されたBackpackの中身と合わせて、必要に応じて準備しましょう。
           </p>
 
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid grid-cols-3 gap-8 sp:grid-cols-1 tab:grid-cols-2">
             {items.map((item, idx) => {
               return (
                 <div
