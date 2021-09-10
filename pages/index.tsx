@@ -41,7 +41,13 @@ const Home: NextPage<Props> = ({ items }: Props) => {
   );
 
   // バックパックを計算
-  function calculateBackpack(numOfPersons: number) {
+  function calculateBackpack(numOfPersons: number, newPersons: Person[]) {
+    // 世帯人数が0になったら空にして早期return
+    if (numOfPersons == 0) {
+      setBackpack(initialBackpackContent);
+      return;
+    }
+
     // 新しいbackpack
     const _new = initialBackpackContent;
 
@@ -68,7 +74,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
     addItems(required);
 
     // 人によって変わるアイテム
-    persons.map((person) => {
+    newPersons.map((person) => {
       // １歳以上の食料
       if (person.age >= 1)
         addItems([{ itemId: 1, quantity: 3 * 3 * numOfDays }]);
@@ -158,7 +164,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
     };
     setPersons([...persons, p]);
     // バックパック計算
-    calculateBackpack(persons.length + 1);
+    calculateBackpack(persons.length + 1, [...persons, p]);
     // フォームの入力内容をクリア
     setFormData({ name: "", gender: "man", age: -1 });
     ageInput.value = "";
