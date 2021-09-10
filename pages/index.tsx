@@ -181,9 +181,20 @@ const Home: NextPage<Props> = ({ items }: Props) => {
       </Head>
 
       <main className="pt-20 px-8 min-h-screen text-center">
-        <section className="mb-20">
+        <section className="mb-10">
           <h1 className="text-6xl font-bold">Survival Kit</h1>
           <p className="mt-3">最低限必要な防災グッズを計算するツール</p>
+        </section>
+
+        <section className="mb-32">
+          <h2 className="text-lg font-semibold mb-4">
+            使い方は簡単３ステップ！
+          </h2>
+          <ol className="list-decimal text-left mx-auto w-max">
+            <li>家族を登録</li>
+            <li>自動で計算される防災グッズを確認する</li>
+            <li>防災グッズを備えておく</li>
+          </ol>
         </section>
 
         <section className="mb-20">
