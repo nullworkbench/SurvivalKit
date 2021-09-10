@@ -350,24 +350,6 @@ const Home: NextPage<Props> = ({ items }: Props) => {
               })}
             </tbody>
           </table>
-          {/* アイテムの詳細モーダル */}
-          <div>
-            <AlertModal title="Title" body="Body" />
-            {/* <div></div>
-            <div>
-              {(() => {
-                const v = items.find((i) => i.id == detailItemId)!;
-                return (
-                  <>
-                    <Icon type={v.iconType} maxHeight={100} />
-                    <span className="block text-2xl">{v.name}</span>
-                    <span>{`${v.unit.num} ${v.unit.name}`}</span>
-                    <p>{v.explanation}</p>
-                  </>
-                );
-              })()}
-            </div> */}
-          </div>
         </section>
 
         <section>

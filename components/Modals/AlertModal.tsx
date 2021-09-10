@@ -2,12 +2,13 @@ import { Transition, Dialog } from "@headlessui/react";
 import { Fragment, useState } from "react";
 
 type Props = {
+  open: boolean;
   title: string;
   body: string;
 };
 
-const Modal: React.FC<Props> = ({ title, body }: Props) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Modal: React.FC<Props> = ({ open, title, body }: Props) => {
+  const [isOpen, setIsOpen] = useState(open);
 
   return (
     <>
