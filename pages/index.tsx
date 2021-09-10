@@ -371,15 +371,31 @@ const Home: NextPage<Props> = ({ items }: Props) => {
           </table>
         </section>
 
-        <section>
-          <div className="flex flex-wrap">
+        <section className="my-32">
+          <h2 className={`${h2style} mb-2`}>All of Survival Kit</h2>
+          <p>Survival Kitに実装されている防災グッズ一覧</p>
+          <p className="mb-8">
+            計算されたBackpackの中身と合わせて、必要に応じて準備しましょう。
+          </p>
+
+          <div className="grid grid-cols-3 gap-8">
             {items.map((item, idx) => {
               return (
-                <div key={idx} className="w-3/12">
+                <div
+                  key={idx}
+                  className="bg-white rounded-2xl p-8 filter drop-shadow-lg"
+                >
                   <Icon type={item.iconType} maxHeight={100} />
-                  <span className="block text-2xl">{item.name}</span>
-                  <span>{`${item.unit.num} ${item.unit.name}`}</span>
-                  <p>{item.explanation}</p>
+                  <span className="block text-2xl my-4">{item.name}</span>
+                  <DetailModal title={item.name}>
+                    <div className="my-8">
+                      <Icon type={item.iconType} maxHeight={200} />
+                      <span className="block mt-4">
+                        単位：{`${item.unit.num} ${item.unit.name}`}
+                      </span>
+                      <p className="mt-2">{item.explanation}</p>
+                    </div>
+                  </DetailModal>
                 </div>
               );
             })}
