@@ -216,14 +216,14 @@ const Home: NextPage<Props> = ({ items }: Props) => {
               {persons.map((person, idx) => {
                 return (
                   <div key={idx} className="relative mx-5 mb-5">
-                    <div className="w-24">
+                    <div className="w-24 mx-auto">
                       <PersonIcon age={person.age} gender={person.gender} />
                     </div>
                     <span className="block mt-2">
                       {person.name ? person.name : "名無しさん"} ({person.age})
                     </span>
                     <div
-                      className="absolute -top-1.5 -right-3 w-1/3 cursor-pointer"
+                      className="absolute -top-1.5 -right-3 w-8 cursor-pointer"
                       onClick={() => {
                         if (
                           !confirm(
