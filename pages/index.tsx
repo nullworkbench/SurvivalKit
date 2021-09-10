@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import AlertModal from "@/components/Modals/AlertModal";
+import DetailModal from "@/components/Modals/DetailModal";
 import Icon from "@/components/Icon";
 import PersonIcon from "@/components/PersonIcon";
 import ItemsJson from "@/data/items.json";
@@ -337,12 +338,12 @@ const Home: NextPage<Props> = ({ items }: Props) => {
                     </td>
                     {/* 詳細 */}
                     <td className={tdStyle}>
-                      <button
-                        className="text-blue-400"
-                        onClick={() => openDetailModal(item.id)}
-                      >
-                        詳細
-                      </button>
+                      <DetailModal title={item.name}>
+                        <div className="my-8">
+                          <Icon type={item.iconType} maxHeight={200} />
+                          <p className="mt-4">{item.explanation}</p>
+                        </div>
+                      </DetailModal>
                     </td>
                   </tr>
                 );
