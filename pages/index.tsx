@@ -76,8 +76,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
     // 人によって変わるアイテム
     newPersons.map((person) => {
       // １歳以上の食料
-      if (person.age >= 1)
-        addItems([{ itemId: 1, quantity: 3 * 3 * numOfDays }]);
+      if (person.age >= 1) addItems([{ itemId: 1, quantity: 3 * numOfDays }]);
 
       const requests: ItemQuantity[] = [];
       switch (true) {
