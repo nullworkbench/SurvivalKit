@@ -22,7 +22,7 @@ const GlobalFooter: React.FC = () => {
         </a>
         を使って開発しています。
       </p>
-      <p>
+      {/* <p>
         一部のアイコンは
         <a
           href="https://heroicons.com"
@@ -33,7 +33,7 @@ const GlobalFooter: React.FC = () => {
           heroicons
         </a>
         を利用しています。
-      </p>
+      </p> */}
       <p>
         人物のイラストは
         <a
