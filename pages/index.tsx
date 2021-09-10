@@ -226,19 +226,22 @@ const Home: NextPage<Props> = ({ items }: Props) => {
                       className="absolute -top-1.5 -right-3 w-1/3 cursor-pointer"
                       onClick={() => {
                         if (
-                          confirm(
+                          !confirm(
                             `${person.name ? person.name : "名無しさん"} (${
                               person.age
                             }) をメンバー一覧から削除しますか？`
-                          ) == false
+                          )
                         )
                           return;
 
                         setPersons((_current) => {
-                          return _current.splice(idx, 1);
+                          // 削除
+                          const _new = [..._current];
+                          _new.splice(idx, 1);
+                          // バックパック再計算
+                          calculateBackpack(_new.length, _new);
+                          return _new;
                         });
-                        // バックパック再計算
-                        calculateBackpack(persons.length - 1);
                       }}
                     >
                       <MinusCircleIcon className="bg-white rounded-full fill-current text-red-400" />
