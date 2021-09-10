@@ -25,6 +25,9 @@ const Home: NextPage<Props> = ({ items }: Props) => {
   // styled
   const h2style = "text-4xl font-semibold";
 
+  // 備える日数
+  const [daysNum, setDaysNum] = useState<number>(3);
+
   // 詳細モーダルで表示したいitemId
   const [detailItemId, setDetailItemId] = useState<number>(0);
 
@@ -41,7 +44,10 @@ const Home: NextPage<Props> = ({ items }: Props) => {
   );
 
   // バックパックを計算
-  function calculateBackpack(numOfPersons: number, newPersons: Person[]) {
+  function calculateBackpack(newPersons: Person[], numOfDays: number) {
+    // 世帯人数
+    const numOfPersons = newPersons.length;
+
     // 世帯人数が0になったら空にして早期return
     if (numOfPersons == 0) {
       setBackpack(initialBackpackContent);
@@ -60,7 +66,6 @@ const Home: NextPage<Props> = ({ items }: Props) => {
     }
 
     // 世帯人数によって数が決まるアイテム
-    const numOfDays = 3; // 備える日数
     const required: ItemQuantity[] = [
       { itemId: 0, quantity: 3 * numOfDays * numOfPersons }, // 飲料水（1人3L*日数）
       { itemId: 2, quantity: Math.round(numOfPersons / 2) }, // 懐中電灯
@@ -71,6 +76,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
       { itemId: 7, quantity: 1 * numOfDays * numOfPersons }, // トイレットペーパー（日数*人数）
       { itemId: 8, quantity: numOfPersons }, // 毛布（人数分）
     ];
+    console.log(numOfPersons);
     addItems(required);
 
     // 人によって変わるアイテム
@@ -163,7 +169,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
     };
     setPersons([...persons, p]);
     // バックパック計算
-    calculateBackpack(persons.length + 1, [...persons, p]);
+    calculateBackpack([...persons, p], daysNum);
     // フォームの入力内容をクリア
     setFormData({ name: "", gender: "man", age: -1 });
     ageInput.value = "";
@@ -239,7 +245,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
                           const _new = [..._current];
                           _new.splice(idx, 1);
                           // バックパック再計算
-                          calculateBackpack(_new.length, _new);
+                          calculateBackpack(_new, daysNum);
                           return _new;
                         });
                       }}
@@ -318,6 +324,24 @@ const Home: NextPage<Props> = ({ items }: Props) => {
         <section className="mb-20">
           <h2 className={h2style}>Your Backpack</h2>
           <p>避難リュック、倉庫に備えておくべきもの</p>
+
+          <section className="my-8">
+            <h3>備える日数</h3>
+            <div className="flex justify-center mt-2">
+              <input
+                type="number"
+                defaultValue={daysNum}
+                min={3}
+                onChange={(e) => {
+                  const n = Number(e.target.value);
+                  setDaysNum(n);
+                  calculateBackpack(persons, n);
+                }}
+                className="w-28 text-center border-solid border-2 border-gray-500 rounded-lg outline-none p-2"
+              />
+              <span className="block ml-2 leading-10">日</span>
+            </div>
+          </section>
 
           <table className="table-auto mx-auto w-full max-w-5xl">
             <thead>
