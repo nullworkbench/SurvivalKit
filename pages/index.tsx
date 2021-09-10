@@ -371,6 +371,14 @@ const Home: NextPage<Props> = ({ items }: Props) => {
           </table>
         </section>
 
+        <section>
+          <h2 className={`${h2style} mb-4`}>Prepare for Emergency</h2>
+          <p>
+            上で自動計算されたBackpackの内容を備え、定期的に計算し直すことで最低限の災害への対策を行うことができます。
+          </p>
+          <p>家族全員で一つずつ確認しながら準備しましょう。</p>
+        </section>
+
         <section className="my-32">
           <h2 className={`${h2style} mb-2`}>All of Survival Kit</h2>
           <p>Survival Kitに実装されている防災グッズ一覧</p>
