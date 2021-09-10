@@ -76,7 +76,6 @@ const Home: NextPage<Props> = ({ items }: Props) => {
       { itemId: 7, quantity: 1 * numOfDays * numOfPersons }, // トイレットペーパー（日数*人数）
       { itemId: 8, quantity: numOfPersons }, // 毛布（人数分）
     ];
-    console.log(numOfPersons);
     addItems(required);
 
     // 人によって変わるアイテム
