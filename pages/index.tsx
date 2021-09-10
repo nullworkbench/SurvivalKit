@@ -186,7 +186,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
       </Head>
 
       <main className="pt-20 px-8 min-h-screen text-center">
-        <section className="mb-10">
+        <section className="mb-16">
           <h1 className="text-6xl font-bold">Survival Kit</h1>
           <p className="mt-3">最低限必要な防災グッズを計算するツール</p>
         </section>
