@@ -259,11 +259,11 @@ const Home: NextPage<Props> = ({ items }: Props) => {
                 onClick={() => document.getElementById("inputArea1")?.focus()}
               /> */}
             </div>
-
+            {/* 性別 */}
             <div className="flex justify-center pb-4">
               <select
                 name="gender"
-                className="block border-solid border-2 border-gray-500 rounded-lg outline-none p-2"
+                className="block border-solid border-2 border-gray-500 rounded-lg outline-none bg-white p-2"
                 value={formData.gender}
                 onChange={(e) => hundleInputChange(e)}
               >
@@ -271,6 +271,7 @@ const Home: NextPage<Props> = ({ items }: Props) => {
                 <option value="woman">女性</option>
               </select>
             </div>
+            {/* 年齢 */}
             <div className="flex justify-center pb-4">
               <input
                 type="number"
