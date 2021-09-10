@@ -59,6 +59,16 @@ const GlobalFooter: React.FC = () => {
         </a>
         を参考にしました。
       </p>
+      <p className="my-8">
+        &copy; 2021{" "}
+        <a
+          href="https://nullworkbench.github.io"
+          target="_blank"
+          rel="noreferrer"
+        >
+          nullworkbench
+        </a>
+      </p>
     </footer>
   );
 };
